@@ -12,7 +12,7 @@ export default function App() {
     setError('Invalid email or password')
     setTimeout(() => {
       setError(undefined)
-    }, 3100)
+    }, 3300)
   }
 
   return (
