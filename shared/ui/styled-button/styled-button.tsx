@@ -1,9 +1,9 @@
 import styles from './styled-button.styles'
+import { useStyledButtonPressAnimation } from './styled-button.animations'
 
-import { FC, useRef } from 'react'
+import { FC } from 'react'
 import {
   Animated,
-  GestureResponderEvent,
   Pressable,
   PressableProps,
   StyleProp,
@@ -11,7 +11,6 @@ import {
 } from 'react-native'
 
 import { StyledText } from '../styled-text'
-import { Colors } from '@shared/theme'
 
 type StyledButtonProps = PressableProps & {
   style?: StyleProp<ViewStyle>
@@ -23,50 +22,38 @@ const StyledButton: FC<StyledButtonProps> = ({
   style,
   label,
   disabled,
+  onPressIn,
+  onPressOut,
   ...props
 }) => {
-  const animatedValue = useRef(new Animated.Value(1)).current
-  const bgColor = animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [Colors.primaryHover, Colors.primary],
-  })
-
-  const fadeIn = (e: GestureResponderEvent) => {
-    Animated.timing(animatedValue, {
-      toValue: 0,
-      duration: 100,
-      useNativeDriver: false,
-    }).start()
-    props.onPressIn?.(e)
-  }
-
-  const fadeOut = (e: GestureResponderEvent) => {
-    Animated.timing(animatedValue, {
-      toValue: 1,
-      duration: 100,
-      useNativeDriver: false,
-    }).start()
-    props.onPressOut?.(e)
-  }
+  const {
+    backgroundColor,
+    onPressIn: animatePressIn,
+    onPressOut: animatePressOut,
+  } = useStyledButtonPressAnimation()
 
   return (
     <Pressable
-      onPressIn={(e) => fadeIn(e)}
-      onPressOut={fadeOut}
-      disabled={disabled}
       {...props}
+      disabled={disabled}
+      onPressIn={(e) => {
+        animatePressIn()
+        onPressIn?.(e)
+      }}
+      onPressOut={(e) => {
+        animatePressOut()
+        onPressOut?.(e)
+      }}
     >
       <Animated.View
         style={[
-          {
-            ...styles.button,
-            backgroundColor: bgColor,
-          },
+          styles.button,
+          { backgroundColor },
           style,
-          disabled ? styles.disabled : null,
+          disabled && styles.disabled,
         ]}
       >
-        {label && <StyledText variant="subtitle">{label}</StyledText>}
+        {label && <StyledText variant='subtitle'>{label}</StyledText>}
       </Animated.View>
     </Pressable>
   )
