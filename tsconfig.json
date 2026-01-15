@@ -9,7 +9,7 @@
       "@assets": ["./assets/"],
       "@assets/*": ["./assets/*"],
       "@shared": ["./shared/"],
-      "@shared/*": ["./shared/*"],
-    },
+      "@shared/*": ["./shared/*"]
+    }
   }
 }

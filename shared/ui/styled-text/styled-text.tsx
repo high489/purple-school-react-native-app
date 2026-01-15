@@ -14,16 +14,7 @@ const StyledText: FC<StyledTextProps> = ({
   style,
   ...props
 }) => {
-  return (
-    <Text
-        style={[
-          styles.base,
-          Typography[variant],
-          style,
-        ]}
-        {...props}
-      />
-  )
+  return <Text style={[styles.base, Typography[variant], style]} {...props} />
 }
 
 export { StyledText }

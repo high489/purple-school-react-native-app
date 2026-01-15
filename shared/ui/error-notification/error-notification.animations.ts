@@ -28,9 +28,9 @@ export const useErrorNotificationAppearAnimation = ({
   const hide = (duration = animationDuration) => {
     if (isHiding.current) return
     isHiding.current = true
-  
+
     clearTimer()
-  
+
     Animated.timing(translateY, {
       toValue: -100,
       duration,
@@ -55,13 +55,12 @@ export const useErrorNotificationAppearAnimation = ({
 
   const panResponder = useRef(
     PanResponder.create({
-      onMoveShouldSetPanResponder: (_, gesture) =>
-        Math.abs(gesture.dy) > 5,
+      onMoveShouldSetPanResponder: (_, gesture) => Math.abs(gesture.dy) > 5,
 
       onPanResponderRelease: (_, gesture) => {
         if (gesture.dy < swipeDismissDistance) {
           const swipeVelocity = Math.abs(gesture.vy)
-          
+
           const duration =
             swipeVelocity > 1
               ? Math.max(100, animationDuration * 0.5)
@@ -70,7 +69,7 @@ export const useErrorNotificationAppearAnimation = ({
           hide(duration)
         }
       },
-    })
+    }),
   ).current
 
   return {

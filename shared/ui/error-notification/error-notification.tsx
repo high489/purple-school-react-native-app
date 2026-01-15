@@ -12,16 +12,17 @@ type ErrorNotificationProps = {
 
 const ErrorNotification: FC<ErrorNotificationProps> = ({ error }) => {
   const [isShown, setIsShown] = useState(false)
-  const { translateY, show, panHandlers } = 
-    useErrorNotificationAppearAnimation({
+  const { translateY, show, panHandlers } = useErrorNotificationAppearAnimation(
+    {
       onHidden: () => setIsShown(false),
-    })
+    },
+  )
 
   useEffect(() => {
     if (!error) return
     setIsShown(true)
     show()
-  }, [error])
+  }, [error, show])
 
   if (!isShown) return null
 

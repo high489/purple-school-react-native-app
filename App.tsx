@@ -5,8 +5,8 @@ import { ErrorNotification, StyledButton, StyledInput, StyledText } from '@share
 import { Colors, Gaps } from '@shared/theme'
 
 export default function App() {
-  const [ error, setError ] = useState<string | undefined>()
-  const width = Dimensions.get('window').width
+  const [error, setError] = useState<string | undefined>()
+  const _width = Dimensions.get('window').width
 
   const alert = () => {
     setError('Invalid email or password')
@@ -18,27 +18,15 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ErrorNotification error={error} />
+      <StyledText variant='primary' style={{ textAlign: 'center' }}>
+        Welcome to MyApp
+      </StyledText>
       <View style={styles.content}>
-        <Image
-          style={styles.logo}
-          source={require('./assets/logo.png')}
-          resizeMode='contain'
-        />
+        <Image style={styles.logo} source={require('./assets/logo.png')} resizeMode='contain' />
         <View style={styles.loginForm}>
-          <StyledInput
-            style={styles.loginFormElement}
-            placeholder='Email'
-          />
-          <StyledInput
-            style={styles.loginFormElement}
-            placeholder='Password'
-            isPassword 
-          />
-          <StyledButton
-            style={styles.loginFormElement}
-            label='Login'
-            onPress={alert}
-          />
+          <StyledInput style={styles.loginFormElement} placeholder='Email' />
+          <StyledInput style={styles.loginFormElement} placeholder='Password' isPassword />
+          <StyledButton style={styles.loginFormElement} label='Login' onPress={alert} />
         </View>
         {/* <StyledText variant='subtitle'>Reset password</StyledText> */}
       </View>

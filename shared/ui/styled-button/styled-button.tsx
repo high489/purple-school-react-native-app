@@ -1,7 +1,14 @@
 import styles from './styled-button.styles'
 
 import { FC, useRef } from 'react'
-import { Animated, GestureResponderEvent, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native'
+import {
+  Animated,
+  GestureResponderEvent,
+  Pressable,
+  PressableProps,
+  StyleProp,
+  ViewStyle,
+} from 'react-native'
 
 import { StyledText } from '../styled-text'
 import { Colors } from '@shared/theme'
@@ -21,7 +28,7 @@ const StyledButton: FC<StyledButtonProps> = ({
   const animatedValue = useRef(new Animated.Value(1)).current
   const bgColor = animatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [ Colors.primaryHover, Colors.primary ],
+    outputRange: [Colors.primaryHover, Colors.primary],
   })
 
   const fadeIn = (e: GestureResponderEvent) => {
@@ -30,7 +37,7 @@ const StyledButton: FC<StyledButtonProps> = ({
       duration: 100,
       useNativeDriver: false,
     }).start()
-    props.onPressIn && props.onPressIn(e)
+    props.onPressIn?.(e)
   }
 
   const fadeOut = (e: GestureResponderEvent) => {
@@ -39,7 +46,7 @@ const StyledButton: FC<StyledButtonProps> = ({
       duration: 100,
       useNativeDriver: false,
     }).start()
-    props.onPressOut && props.onPressOut(e)
+    props.onPressOut?.(e)
   }
 
   return (
@@ -59,7 +66,7 @@ const StyledButton: FC<StyledButtonProps> = ({
           disabled ? styles.disabled : null,
         ]}
       >
-        {label && <StyledText variant='subtitle'>{label}</StyledText>}
+        {label && <StyledText variant="subtitle">{label}</StyledText>}
       </Animated.View>
     </Pressable>
   )

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     paddingVertical: 15.5,
     backgroundColor: Colors.dangerRed,
-  }
+  },
 })
 
 export default styles

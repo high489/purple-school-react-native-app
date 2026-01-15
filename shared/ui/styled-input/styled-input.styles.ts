@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   textInput: {
     color: Colors.white,
     flex: 1,
-    paddingVertical: 18, 
+    paddingVertical: 18,
   },
   eyeIcon: {
     paddingLeft: 24,
