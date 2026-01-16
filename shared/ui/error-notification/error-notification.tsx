@@ -1,6 +1,6 @@
 import styles from './error-notification.styles'
 
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Animated } from 'react-native'
 
 import { StyledText } from '../styled-text'
@@ -10,21 +10,24 @@ type ErrorNotificationProps = {
   error?: string
 }
 
-const ErrorNotification: FC<ErrorNotificationProps> = ({ error }) => {
+export function ErrorNotification({ error }: ErrorNotificationProps) {
   const [isShown, setIsShown] = useState(false)
-  const { translateY, show, panHandlers } = useErrorNotificationAppearAnimation(
-    {
+
+  const { translateY, show, panHandlers } =
+    useErrorNotificationAppearAnimation({
       onHidden: () => setIsShown(false),
-    },
-  )
+    })
 
   useEffect(() => {
     if (!error) return
+
     setIsShown(true)
     show()
   }, [error, show])
 
-  if (!isShown) return null
+  if (!isShown) {
+    return null
+  }
 
   return (
     <Animated.View
@@ -38,5 +41,3 @@ const ErrorNotification: FC<ErrorNotificationProps> = ({ error }) => {
     </Animated.View>
   )
 }
-
-export { ErrorNotification }

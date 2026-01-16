@@ -5,13 +5,10 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "purpleschoolreactnativeapp",
     "userInterfaceStyle": "automatic",
+    "backgroundColor": "#16171D",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.vmatskaniuk.purple-school-react-native-app"
@@ -19,13 +16,63 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#16171D"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#16171D"
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/FiraSans-Regular.ttf",
+            "./assets/fonts/FiraSans-SemiBold.ttf",
+            "./assets/fonts/FiraSans-Bold.ttf"
+          ],
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "FiraSans",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/FiraSans-Regular.ttf",
+                    "weight": 400
+                  },
+                  {
+                    "path": "./assets/fonts/FiraSans-SemiBold.ttf",
+                    "weight": 600
+                  },
+                  {
+                    "path": "./assets/fonts/FiraSans-Bold.ttf",
+                    "weight": 700
+                  }
+                ]
+              }
+            ]
+          },
+          "ios": {
+            "fonts": [
+              "./assets/fonts/FiraSans-Regular.ttf",
+              "./assets/fonts/FiraSans-SemiBold.ttf",
+              "./assets/fonts/FiraSans-Bold.ttf"
+            ]
+          }
+        }
+      ]
+    ]
   }
 }

@@ -44,7 +44,7 @@ export default [
       'react-hooks/exhaustive-deps': 'warn',
 
       // React Native
-      'react-native/no-unused-styles': 'error',
+      'react-native/no-unused-styles': 'warn',
       'react-native/no-single-element-style-arrays': 'error',
       'react-native/split-platform-components': 'warn',
       'react-native/no-color-literals': 'warn',

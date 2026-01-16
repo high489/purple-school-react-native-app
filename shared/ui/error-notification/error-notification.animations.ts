@@ -15,7 +15,9 @@ export const useErrorNotificationAppearAnimation = ({
   onHidden,
 }: AppearAnimationOptions = {}) => {
   const translateY = useRef(new Animated.Value(-100)).current
-  const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  )
   const isHiding = useRef(false)
 
   const clearTimer = () => {
@@ -55,7 +57,8 @@ export const useErrorNotificationAppearAnimation = ({
 
   const panResponder = useRef(
     PanResponder.create({
-      onMoveShouldSetPanResponder: (_, gesture) => Math.abs(gesture.dy) > 5,
+      onMoveShouldSetPanResponder: (_, gesture) =>
+        Math.abs(gesture.dy) > 5,
 
       onPanResponderRelease: (_, gesture) => {
         if (gesture.dy < swipeDismissDistance) {

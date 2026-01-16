@@ -1,7 +1,6 @@
 import styles from './styled-button.styles'
 import { useStyledButtonPressAnimation } from './styled-button.animations'
 
-import { FC } from 'react'
 import {
   Animated,
   Pressable,
@@ -18,14 +17,14 @@ type StyledButtonProps = PressableProps & {
   disabled?: boolean
 }
 
-const StyledButton: FC<StyledButtonProps> = ({
+export function StyledButton({
   style,
   label,
   disabled,
   onPressIn,
   onPressOut,
   ...props
-}) => {
+}: StyledButtonProps) {
   const {
     backgroundColor,
     onPressIn: animatePressIn,
@@ -37,6 +36,7 @@ const StyledButton: FC<StyledButtonProps> = ({
       {...props}
       disabled={disabled}
       onPressIn={(e) => {
+        if (disabled) return
         animatePressIn()
         onPressIn?.(e)
       }}
@@ -58,5 +58,3 @@ const StyledButton: FC<StyledButtonProps> = ({
     </Pressable>
   )
 }
-
-export { StyledButton }

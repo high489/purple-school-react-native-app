@@ -1,6 +1,6 @@
 import styles from './styled-input.styles'
 
-import { FC, useState } from 'react'
+import { useState } from 'react'
 import {
   Pressable,
   StyleProp,
@@ -18,28 +18,34 @@ type StyledInputProps = TextInputProps & {
   isPassword?: boolean
 }
 
-const StyledInput: FC<StyledInputProps> = ({ style, isPassword, ...props }) => {
+export function StyledInput({
+  style,
+  isPassword,
+  ...props
+}: StyledInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+
   const EyeIcon = isPasswordVisible ? EyeOpenedIcon : EyeClosedIcon
 
   return (
     <View style={styles.textInputContainer}>
       <TextInput
-        style={[styles.textInput, style, Typography['primary']]}
+        style={[styles.textInput, Typography.primary, style]}
         secureTextEntry={isPassword && !isPasswordVisible}
         placeholderTextColor={Colors.gray}
         {...props}
       />
+
       {isPassword && (
         <Pressable
           style={styles.eyeIcon}
-          onPress={() => setIsPasswordVisible((state) => !state)}
+          onPress={() => setIsPasswordVisible((prev) => !prev)}
         >
-          <EyeIcon color={isPasswordVisible ? Colors.white : Colors.gray} />
+          <EyeIcon
+            color={isPasswordVisible ? Colors.white : Colors.gray}
+          />
         </Pressable>
       )}
     </View>
   )
 }
-
-export { StyledInput }
